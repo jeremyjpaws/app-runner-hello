@@ -25,7 +25,7 @@ def foobar():
   print("Handling web request for foobar. Returning contents...")
   s3 = boto3.client('s3')
   content = ""
-  with open('temps3file', 'r+b') as f:
+  with open('temps3file', 'a+b') as f:
     s3.download_fileobj(s3bucket, s3key, f)
     data = f.read()
     content = data.decode('utf-8')
