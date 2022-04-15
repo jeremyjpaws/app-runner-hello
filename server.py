@@ -24,12 +24,15 @@ def root():
 def foobar():
   print("Handling web request for foobar. Returning contents...")
   s3 = boto3.client('s3')
-  with open('temps3file', 'wb') as f:
+  content = ""
+  with open('temps3file', 'r+b') as f:
     s3.download_fileobj(s3bucket, s3key, f)
-    line = f.read(10)
-    print ("Read Line: %s" % (line))
-    result = line.encode("utf-8")
-    return result
+    data = f.read()
+    content = data.decode('utf-8')
+    
+  print("Content is:" + content)
+  result = content.encode("utf-8")
+  return result
 
 
 if __name__ == "__main__":
