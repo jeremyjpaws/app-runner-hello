@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 PORT = 8080
 name = os.environ.get('NAME')
 s3bucket = os.environ.get('BUCKET')
-s3key = os.environment.get('KEY')
+s3key = os.environ.get('KEY')
 
 if name == None or len(name) == 0:
   name = "world"
@@ -40,7 +40,7 @@ def whoami():
   logging.info("Get request for path /whoami, doing sts test call")
   sts = boto3.client('sts')
   identity = sts.get_caller_identity()
-  logging.info(f"My account is {identity['Account']} and my user ARN is {identity['User']}")
+  logging.info(f"My account is {identity['Account']} and my user ARN is {identity['Arn']} and I am {identity['UserId']}.")
   # Note for extra security let's not risk returning the info to the site itself, we'll check our logs later
   return "Go check logs"
      
