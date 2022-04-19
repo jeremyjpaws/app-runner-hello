@@ -42,7 +42,7 @@ def whoami():
   identity = sts.get_caller_identity()
   logging.info(f"My account is {identity['Account']} and my user ARN is {identity['User']}"
   # Note for extra security let's not risk returning the info to the site itself, we'll check our logs later
-  return "Go check logs".encode("utf-8")
+  return "Go check logs"
 
 @app.route("/foobar")
 def foobar():
