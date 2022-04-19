@@ -40,10 +40,10 @@ def whoami():
   logging.info("Get request for path /whoami, doing sts test call")
   sts = boto3.client('sts')
   identity = sts.get_caller_identity()
-  logging.info(f"My account is {identity['Account']} and my user ARN is {identity['User']}"
+  logging.info(f"My account is {identity['Account']} and my user ARN is {identity['User']}")
   # Note for extra security let's not risk returning the info to the site itself, we'll check our logs later
   return "Go check logs"
-
+     
 @app.route("/foobar")
 def foobar():
   logging.info(f"Got request for path /foobar. Downloading file {s3key} from S3 bucket {s3bucket} and Returning contents...")
