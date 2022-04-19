@@ -31,8 +31,18 @@ def root():
   return result
 
 @app.route("/bizbaz")
+def bizbaz():
   logging.info("Got request for path /bizbaz, doing nothing and returning simple message")
   return "bizbaz!"
+
+@app.route("/whoami")
+def whoami():
+  logging.info("Get request for path /whoami, doing sts test call")
+  sts = boto3.client('sts')
+  identity = sts.get_caller_identity()
+  logging.info(f"My account is {identity['Account']} and my user ARN is {identity['User']}"
+  # Note for extra security let's not risk returning the info to the site itself, we'll check our logs later
+  return "Go check logs".encode("utf-8")
 
 @app.route("/foobar")
 def foobar():
