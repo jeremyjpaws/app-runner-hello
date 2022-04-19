@@ -14,10 +14,10 @@ s3key = os.environ.get('KEY')
 if name == None or len(name) == 0:
   name = "world"
 
-if s3bucket == None or len(bucket) == 0:
+if s3bucket == None or len(s3bucket) == 0:
   logging.error("BUCKET env var missing!")
 
-if s3key == None or len(bucket) == 0:
+if s3key == None or len(s3key) == 0:
   logging.error("KEY env var missing!")
 
 MESSAGE = "Hello, " + name + "!"
@@ -49,13 +49,17 @@ def foobar():
   logging.info(f"Got request for path /foobar. Downloading file {s3key} from S3 bucket {s3bucket} and Returning contents...")
   s3 = boto3.client('s3')
   content = ""
-  with open('temps3file', 'a+b') as f:
+  with open('download.txt', 'a+b') as f:
     logging.info("Starting download...")
     s3.download_fileobj(s3bucket, s3key, f)
     logging.info("Download complete...")
+    f.seek(0)
     data = f.read()
     logging.info("Decoding into UTF-8...")
     content = data.decode('utf-8')
+    logging.info(f.read())
+    logging.info(f.readline())
+    logging.info(f.readlines())
     
   logging.info(f"Content is: {content}")
   result = content.encode("utf-8")
