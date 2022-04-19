@@ -4,7 +4,7 @@ import boto3
 import logging
 import time
 
-logging.basicConfig(level==logging.INFO)
+logging.basicConfig(level=logging.INFO)
 
 PORT = 8080
 name = os.environ.get('NAME')
