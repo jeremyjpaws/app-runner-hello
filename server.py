@@ -57,9 +57,6 @@ def foobar():
     data = f.read()
     logging.info("Decoding into UTF-8...")
     content = data.decode('utf-8')
-    logging.info(f.read())
-    logging.info(f.readline())
-    logging.info(f.readlines())
     
   logging.info(f"Content is: {content}")
   result = content.encode("utf-8")
