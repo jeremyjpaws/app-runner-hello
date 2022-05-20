@@ -3,7 +3,6 @@ import os
 import boto3
 import logging
 import time
-import request
 import requests
 
 logging.basicConfig(level=logging.INFO)
